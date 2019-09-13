@@ -1,0 +1,3 @@
+containers:
+- name: kitsune-runtime-identifier
+  image: kitsuneruntimeimage.azurecr.io/kitsune-runtime-identifier:v1

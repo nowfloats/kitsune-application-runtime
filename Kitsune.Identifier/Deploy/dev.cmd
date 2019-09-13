@@ -1,0 +1,1 @@
+dotnet lambda deploy-serverless --config-file DeploymentConfigs\AwsDev\aws-lambda-tools-dev.json

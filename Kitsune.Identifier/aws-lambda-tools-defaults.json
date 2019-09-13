@@ -1,0 +1,11 @@
+
+{
+    "region" : "ap-south-1",
+    "profile" : "Kitsune",
+    "configuration" : "Release",
+    "framework"     : "netcoreapp2.1",
+    "s3-bucket"     : "kitsune-sls-deploy",
+    "template"      : "serverless.template",
+    "stack-name"    : "kitsune-identifier",
+    "environment-variables" : "KLMConfigurations__Base64Response=true;KLMConfigurations__CacheTimeout=10000;KLMConfigurations__WebCache__Url=\"kit-webcache-group-1.r0lnor.clustercfg.aps1.cache.amazonaws.com:6379,allowAdmin=true,connectTimeOut=2000\";KLMConfigurations__APICache__Url=\"kit-webcache-group-1.r0lnor.clustercfg.aps1.cache.amazonaws.com:6379,allowAdmin=true,connectTimeOut=2000\""
+}

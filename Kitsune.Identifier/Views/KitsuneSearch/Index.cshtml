@@ -1,0 +1,123 @@
+﻿@*@model List<KLM.Identifier.Models.SearchObject>*@
+
+@{
+    Layout = null;
+    var linkObjects = (List<Kitsune.Identifier.Models.SearchObject>)ViewBag.urlList;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>More on "@ViewBag.QueryString"</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    @if (!String.IsNullOrEmpty(@ViewBag.faviconIcon))
+    {
+        <link href="@ViewBag.faviconIcon" rel="icon">
+    }
+    @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>*@
+    <style>
+        .panel-body {
+            font-weight: normal !important;
+            color: black;
+        }
+
+            .panel strong, .panel-body strong {
+                font-weight: normal !important;
+            }
+
+        p, .panel-description p {
+            margin: 0;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .panel-heading, .panel-heading p {
+            -webkit-line-clamp: 1;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            max-height: 40px;
+            line-height: 2;
+        }
+
+        .panel-description {
+            -webkit-line-clamp: 5;
+        }
+
+            .panel-description, .panel-description p {
+                -webkit-line-clamp: 5;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                max-height: 100px;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Related to "@ViewBag.QueryString"</h2>
+        @{
+            var listWords = @ViewBag.QueryString.Split(' ');
+
+            var pattern = @"\b(?!<a[^>]*?>)(" + @ViewBag.QueryString + @")(?![^<]*?</a>)\b";
+            var exp = new System.Text.RegularExpressions.Regex(pattern, System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+            //richMediaFloatMessage = exp.Replace(richMediaFloatMessage, @"<span class='float'>$0</span>");
+        }
+        @if (linkObjects == null || linkObjects.Count == 0)
+        {
+            @Html.Raw("No links found");
+        }
+        else
+        {
+            foreach (var link in linkObjects)
+            {
+                //link.Keywords.ForEach(word => word = exp.Replace(word, @"<span class='float'>$0</span>"));
+                //link.Keywords.ForEach(word => word = word.Replace(@ViewBag.QueryString, "<strong>" + @ViewBag.QueryString + "</strong>"));
+                <div class="panel panel-default">
+                    @if (link.Title != null)
+                    {
+                        <div class="panel-heading"><a href="@link.S3Url.Replace("http://","//").Replace("https://","//").ToLower()">@Html.Raw(@link.Title)</a></div>
+                    }
+                    else
+                    {
+                        <div class="panel-heading"><a href="@link.S3Url.Replace("http://","//").Replace("https://","//").ToLower()">@Html.Raw(@link.S3Url.ToLower())</a></div>
+                    }
+
+                    <div class="panel-body">
+
+                        @if (link.Description != null)
+                        {
+                            <h4><u>Description:</u></h4>
+                            <div class="panel-description">@Html.Raw(link.Description)</div>
+                        }
+                        @*<span>@String.Join(" | ", link.Keywords.ToArray())</span>*@
+                        <h4><u>Related Keyphrases:</u></h4>
+                        @for (int index = 0; index < link.Keywords.Count - 1; index++)
+                        {
+
+                            var a = exp.Replace(link.Keywords[index], @"<b>$0</b>");
+
+                            <a href="@String.Format("/k-search/{0}?v=1", @link.Keywords[index].Replace(" ", "+").Replace(" ", "+"))" style="color:black">@Html.Raw(a)</a>
+                            <span> | </span>
+                        }
+                        @{
+                            if ((link.Keywords.Count > 0))
+                            {
+                                var z = (link.Keywords.Count > 0) ? exp.Replace(link.Keywords[link.Keywords.Count - 1], @"<b>$0</b>") : "";
+                                <a href="@String.Format("/k-search/{0}?v=1", @link.Keywords[link.Keywords.Count - 1].Replace(" ", "+").Replace("https://", "//"))" style="color:black">@Html.Raw(z)</a>
+                            }
+                        }
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</body>
+</html>

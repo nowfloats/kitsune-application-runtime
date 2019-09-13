@@ -1,0 +1,9 @@
+{
+	"region": "ap-south-1",
+	"profile": "biz",
+	"configuration": "Release",
+	"framework": "netcoreapp2.1",
+	"s3-bucket": "kitsune-lambda-sls-deploy",
+	"template": "deploymentconfigs/awsbiz/serverless-biz.template",
+	"stack-name": "kitsune-identifier"
+}

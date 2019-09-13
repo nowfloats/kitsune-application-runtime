@@ -1,0 +1,13 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace KitsuneLayoutManager.Models
+{
+    public class GetWebsiteDataByPropertyResponseModel
+    {
+        public dynamic Data { get; set; }
+    }
+}

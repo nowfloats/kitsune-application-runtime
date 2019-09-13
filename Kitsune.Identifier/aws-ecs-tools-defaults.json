@@ -1,0 +1,27 @@
+
+{
+    "region" : "ap-south-1",
+    "profile" : "kit",
+    "configuration" : "Release",
+    "tag"           : "kitsune-demo-identifier:latest",
+    "cluster"       : "kitsune-demo-identifier",
+    "launch-type"   : "EC2",
+    "task-definition-name" : "kitsune-demo-identifier",
+    "task-definition-network-mode" : "bridge",
+    "task-definition-task-role"    : "arn:aws:iam::748469861505:role/ecsTaskExecutionRole",
+    "container-name"               : "kitsune-demo-identifier",
+    "container-memory-hard-limit"  : 4096,
+    "container-memory-soft-limit"  : 1024,
+    "container-port-mapping"       : "0:80",
+    "container-environment-variables" : "\"ASPNETCORE_ENVIRONMENT\"=\"Production\";\"KLMConfigurations__WebCache__IsEnabled\"=\"false\";\"KLMConfigurations__APICache__IsEnabled\"=\"false\";\"KLMConfigurations__DisableGZipAndDisableBase64Response\"=\"true\"",
+    "skip-image-push"                 : false,
+    "cluster-service"                 : "kit-demo-identifier",
+    "desired-count"                   : 5,
+    "deployment-minimum-healthy-percent" : 50,
+    "deployment-maximum-percent"         : 200,
+    "elb-service-role"                   : "ecsServiceRole",
+    "elb-target-group"                   : "arn:aws:elasticloadbalancing:ap-south-1:748469861505:targetgroup/kitsune-demo-identifier/41970bdb9329df82",
+    "elb-container-port"                 : 80,
+    "placement-strategy"                 : "spread=attribute:ecs.availability-zone,spread=instanceId",
+    "vstoolkit-deployment-mode"          : "DeployService"
+}

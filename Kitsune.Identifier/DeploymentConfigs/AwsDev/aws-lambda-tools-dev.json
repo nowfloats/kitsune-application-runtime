@@ -1,0 +1,9 @@
+{
+	"region": "ap-south-1",
+	"profile": "dev",
+	"configuration": "Debug",
+	"framework": "netcoreapp2.1",
+	"s3-bucket": "kitsune-identifier-lambda-dev-deployment",
+	"template": "deploymentconfigs/awsdev/serverless-dev.template",
+	"stack-name": "kitsune-identifier"
+}

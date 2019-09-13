@@ -1,0 +1,66 @@
+{
+  "AWSTemplateFormatVersion" : "2010-09-09",
+  "Transform" : "AWS::Serverless-2016-10-31",
+  "Description" : "An AWS Serverless Application that uses the ASP.NET Core framework running in Amazon Lambda.",
+
+  "Resources" : {
+    "AspNetCoreFunction" : {
+      "Type" : "AWS::Serverless::Function",
+      "Properties": {
+        "Handler": "Kitsune.Identifier::Kitsune.Identifier.LambdaFunction::FunctionHandlerAsync",
+        "Runtime": "dotnetcore2.1",
+        "CodeUri": "",
+		"Environment": {
+			"Variables" : {
+				"KLMConfigurations__Base64Response": "true",
+				"KLMConfigurations__CacheTimeout": "10000",
+				"KLMConfigurations__WebCache__Url": "kit-runtime-webcache.g98ftg.clustercfg.aps1.cache.amazonaws.com:6379,allowAdmin=true,connectTimeOut=60000",
+				"KLMConfigurations__APICache__Url": "kit-runtime-webcache.g98ftg.clustercfg.aps1.cache.amazonaws.com:6379,allowAdmin=true,connectTimeOut=60000",
+				"KLMConfigurations__WebCache__IsEnabled": "true",
+				"KLMConfigurations__APICache__IsEnabled": "true",
+
+				"DynamicResponse__CacheEnabled": "true",
+				"DynamicResponse__CacheControlValue": "max-age=86400",
+				"DynamicResponse__ExpiresInSecondsValue": "86400",
+
+				"StaticResponse__CacheEnabled": "true",
+				"StaticResponse__CacheControlValue": "public, max-age=31536000, immutable",
+				"StaticResponse__ExpiresInSecondsValue": "31536000",
+				
+				"BotResponse__CacheEnabled": "false",
+				"BotResponse__CacheControlValue": "",
+				"BotResponse__ExpiresInSecondsValue": "0",
+
+				"AllResponseFixedDurationCache__Enabled": "false",
+				"AllResponseFixedDurationCache__StartHour_IST": "0",
+				"AllResponseFixedDurationCache__EndHour_IST": "0"
+			}
+		},
+        "MemorySize": 512,
+        "Timeout": 300,
+		"VpcConfig": {
+			"SecurityGroupIds" : [ "sg-0b93036e5eb0858c8" ],
+            "SubnetIds" : [ "subnet-0e581abdd8ed8f8db","subnet-0d5db262365564fcb" ]
+		},
+        "Role": null,
+        "Policies": [ "AWSLambdaFullAccess", "AWSLambdaVPCAccessExecutionRole", "CloudWatchLogsFullAccess" ],
+        "Events": {
+          "PutResource": {
+            "Type": "Api",
+            "Properties": {
+              "Path": "/{proxy+}",
+              "Method": "ANY"
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "Outputs" : {
+    "ApiURL" : {
+        "Description" : "API endpoint URL for Prod environment",
+        "Value" : { "Fn::Sub" : "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/" }
+    }
+  }
+}

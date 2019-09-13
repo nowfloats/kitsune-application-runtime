@@ -1,0 +1,9 @@
+{
+	"region": "ap-south-1",
+	"profile": "kit",
+	"configuration": "Release",
+	"framework": "netcoreapp2.1",
+	"s3-bucket": "kitsune-sls-deploy",
+	"template": "deploymentconfigs/awskitsune/serverless-kitsune.template",
+	"stack-name": "kitsune-identifier"
+}

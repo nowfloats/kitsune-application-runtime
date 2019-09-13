@@ -1,0 +1,9 @@
+﻿Shell script used for AliCloud to download the code:
+
+#!/bin/bash
+rm -rf /root/klm
+wget -P /root/ "https://s3-ap-southeast-1.amazonaws.com/deployment-cdn/withfloats-deployment/mumbai/web/klm.web.alicloud.zip"
+unzip "/root/klm.web.alicloud.zip" -d klm
+rm /root/klm.web.alicloud.zip*
+cd /root/klm
+dotnet KLM.Web.dll

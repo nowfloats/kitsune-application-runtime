@@ -1,0 +1,11 @@
+.vs/
+cache-invalidation/bin/
+cache-invalidation/obj/
+FloatingpointLayoutManager/bin/
+FloatingpointLayoutManager/obj/
+Kitsune.Identifier/bin/
+Kitsune.Identifier/obj/
+KLM.AliCloud.Web/bin/
+KLM.AliCloud.Web/obj/KLM.Web.csproj.nuget.g.props
+KLM.AliCloud.Web/obj/
+packages/

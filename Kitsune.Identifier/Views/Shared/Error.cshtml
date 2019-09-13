@@ -1,0 +1,125 @@
+﻿@model ErrorViewModel
+@{
+    ViewData["Title"] = "404 NOT FOUND";
+}
+
+@*<h1 class="text-danger">Error.</h1>
+    <h2 class="text-danger">Sorry, an error occurred while processing your request.</h2>*@
+<link href="//fonts.googleapis.com/css?family=Lato:400,700,900" rel=stylesheet />
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Roboto;
+        font-size: 15px;
+        position: relative;
+    }
+
+    .page-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    img {
+        margin: 0 auto;
+        display: block;
+        width: 20vh;
+        margin-bottom: 3rem;
+        margin-top: 6rem;
+        max-width: 202px;
+    }
+
+    .error-text {
+        padding-bottom: 4rem;
+        overflow: hidden;
+        min-width: 420px;
+        margin: 0 auto;
+        max-width: 500px;
+        display: inline-block;
+    }
+
+    h1 {
+        margin: 0;
+        text-transform: uppercase;
+        float: left;
+        font-weight: 500;
+        font-size: 2rem;
+        font-family: "Lato",Helvetica,Arial,sans-serif !important;
+        text-align: center;
+        width: 100%;
+    }
+
+    h2 {
+        font-family: "Lato",Helvetica,Arial,sans-serif !important;
+        text-align: center;
+        width: 100%;
+    }
+
+    p {
+        float: left;
+        margin: 0;
+        padding-left: 1rem;
+        font-weight: 400;
+        font-size: 1rem;
+    }
+
+    a:hover {
+        background: #ffb900;
+        color: #fff;
+        border: 1px solid #ffb900;
+        text-decoration: none;
+    }
+
+    a {
+        clear: both;
+        border: 1px solid #000;
+        float: none;
+        text-transform: uppercase;
+        padding: 0 35px;
+        font-weight: 400;
+        font-size: 1rem;
+        line-height: 2rem;
+        background: #fff;
+        border-radius: 2px;
+        cursor: pointer;
+        color: #000;
+        margin-bottom: 6rem;
+        transition: all 0.2s ease-out;
+        text-decoration: none;
+    }
+
+    @@media only screen and (max-width: 480px) {
+        body {
+            font-size: 10px;
+        }
+
+        .error-text {
+            min-width: 90%;
+        }
+
+        img {
+            margin-top: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        h1, p {
+            float: none;
+            clear: both;
+            padding: 0;
+            text-align: center;
+        }
+    }
+
+</style>
+
+<div class="page-content">
+    <img src="https://cdn.kitsune.tools/theme-common-assets/error404.png">
+    <div class="error-text">
+        <h1>404 error</h1>
+        <br />
+        <h2>The page you seek doesn't exist.</h2>
+    </div>
+</div>

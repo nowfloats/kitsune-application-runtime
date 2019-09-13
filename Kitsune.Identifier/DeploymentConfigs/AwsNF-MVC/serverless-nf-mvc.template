@@ -1,0 +1,51 @@
+{
+  "AWSTemplateFormatVersion" : "2010-09-09",
+  "Transform" : "AWS::Serverless-2016-10-31",
+  "Description" : "An AWS Serverless Application that uses the ASP.NET Core framework running in Amazon Lambda.",
+
+  "Resources" : {
+    "AspNetCoreFunction" : {
+      "Type" : "AWS::Serverless::Function",
+      "Properties": {
+        "Handler": "Kitsune.Identifier::Kitsune.Identifier.LambdaFunction::FunctionHandlerAsync",
+        "Runtime": "dotnetcore2.1",
+        "CodeUri": "",
+		"Environment": {
+			"Variables" : {
+				"KLMConfigurations__CacheTimeout": "10000",
+				"KLMConfigurations__WebCache__Url": "kit-webcache-group-3.r0lnor.clustercfg.aps1.cache.amazonaws.com:6379,allowAdmin=true,connectTimeOut=60000",
+				"KLMConfigurations__APICache__Url": "kit-webcache-group-3.r0lnor.clustercfg.aps1.cache.amazonaws.com:6379,allowAdmin=true,connectTimeOut=60000",
+				"KLMConfigurations__WebCache__IsEnabled": "true",
+				"KLMConfigurations__APICache__IsEnabled": "true",
+				"KLMConfigurations__DisableGZipAndDisableBase64Response": "true",
+				"EnableMVC": "true"
+			}
+		},
+        "MemorySize": 512,
+        "Timeout": 300,
+		"VpcConfig": {
+			"SecurityGroupIds" : [ "sg-02f8ca2ff7284809f" ],
+            "SubnetIds" : [ "subnet-0c590bbc8c3d7d349","subnet-0cc5bf167967ec726" ]
+		},
+        "Role": null,
+        "Policies": [ "AWSLambdaFullAccess", "AWSLambdaVPCAccessExecutionRole", "CloudWatchLogsFullAccess" ],
+        "Events": {
+          "PutResource": {
+            "Type": "Api",
+            "Properties": {
+              "Path": "/{proxy+}",
+              "Method": "ANY"
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "Outputs" : {
+    "ApiURL" : {
+        "Description" : "API endpoint URL for Prod environment",
+        "Value" : { "Fn::Sub" : "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/" }
+    }
+  }
+}
