@@ -19,8 +19,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FloatingpointLayoutManager\FloatingpointLayoutManager.csproj" />
-    <ProjectReference Include="..\Kitsune.Identifier\Kitsune.Identifier.csproj" />
+    <ProjectReference Include="..\..\AWS\Kitsune.Identifier\Kitsune.Identifier.csproj" />
+    <ProjectReference Include="..\..\Common\FloatingpointLayoutManager\FloatingpointLayoutManager.csproj" />
   </ItemGroup>
 
 </Project>

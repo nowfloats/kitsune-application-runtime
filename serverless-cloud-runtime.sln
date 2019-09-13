@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.757
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kitsune.Identifier", "Kitsune.Identifier\Kitsune.Identifier.csproj", "{9ECE2B17-4C7B-4887-BF2C-B28BC0B4296E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kitsune.Identifier", "AWS\Kitsune.Identifier\Kitsune.Identifier.csproj", "{9ECE2B17-4C7B-4887-BF2C-B28BC0B4296E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FloatingpointLayoutManager", "FloatingpointLayoutManager\FloatingpointLayoutManager.csproj", "{F103B1BD-DC0A-4D41-87EA-E7D5C9085E4A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FloatingpointLayoutManager", "Common\FloatingpointLayoutManager\FloatingpointLayoutManager.csproj", "{F103B1BD-DC0A-4D41-87EA-E7D5C9085E4A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KLM.Web", "KLM.AliCloud.Web\KLM.Web.csproj", "{A4109515-4BFC-4C6B-B9B9-852F3FBBE629}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KLM.Web", "AliCloud\KLM.AliCloud.Web\KLM.Web.csproj", "{A4109515-4BFC-4C6B-B9B9-852F3FBBE629}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{D540CBB5-C473-481A-A44E-9B912D09EF8C}"
 EndProject
@@ -15,7 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AWS", "AWS", "{9C5D2DEF-BAD
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AliCloud", "AliCloud", "{75564FAD-4A68-4D0B-9B2B-5EAB723F7DF0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CacheInvalidationRoute", "cache-invalidation\CacheInvalidationRoute.csproj", "{B5A3217E-5E45-42E5-A115-FBB3F3F8D6A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CacheInvalidationRoute", "AWS\cache-invalidation\CacheInvalidationRoute.csproj", "{B5A3217E-5E45-42E5-A115-FBB3F3F8D6A1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

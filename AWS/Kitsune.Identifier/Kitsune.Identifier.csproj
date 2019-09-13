@@ -35,13 +35,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Content Update="appsettings.json">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
+	  <ProjectReference Include="..\..\Common\FloatingpointLayoutManager\FloatingpointLayoutManager.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\FloatingpointLayoutManager\FloatingpointLayoutManager.csproj" />
+		<Content Update="appsettings.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
 	</ItemGroup>
 </Project>
 

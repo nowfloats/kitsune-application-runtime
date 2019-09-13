@@ -9,3 +9,13 @@ KLM.AliCloud.Web/bin/
 KLM.AliCloud.Web/obj/KLM.Web.csproj.nuget.g.props
 KLM.AliCloud.Web/obj/
 packages/
+AWS/Kitsune.Identifier/bin/Release/netcoreapp2.1/publish/Microsoft.CodeAnalysis.Workspaces.dll
+AWS/Kitsune.Identifier/bin/
+AWS/Kitsune.Identifier/obj/
+Common/FloatingpointLayoutManager/bin/
+AWS/cache-invalidation/bin/Debug/netcoreapp2.2/CacheInvalidationRoute.pdb
+AWS/cache-invalidation/bin/
+AWS/cache-invalidation/obj/
+AliCloud/KLM.AliCloud.Web/obj/
+Common/FloatingpointLayoutManager/obj/
+AliCloud/KLM.AliCloud.Web/bin/
