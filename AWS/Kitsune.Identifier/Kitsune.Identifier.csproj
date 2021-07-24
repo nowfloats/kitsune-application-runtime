@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
 	<PropertyGroup>
-		<TargetFramework>netcoreapp2.1</TargetFramework>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
 		<DockerTargetOS>Linux</DockerTargetOS>
 		<GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
 		<AWSProjectType>Lambda</AWSProjectType>
@@ -18,8 +18,9 @@
 		<PackageReference Include="AWSSDK.S3" Version="3.3.20.2" />
 		<PackageReference Include="HtmlAgilityPack" Version="1.8.6" />
 		<PackageReference Include="Kitsune.Models" Version="1.0.6.1" />
+		<PackageReference Include="Kitsune.SyntaxParser" Version="1.0.2" />
 		<PackageReference Include="MessagePack" Version="1.7.3.4" />
-		<PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.0" />
+<!--		<PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.0" />-->
 		<PackageReference Include="Microsoft.AspNetCore.ResponseCompression" Version="2.1.1" />
 		<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.0" />
 		<PackageReference Include="MongoDB.Driver" Version="2.7.0" />
