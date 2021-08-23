@@ -121,6 +121,7 @@ namespace Kitsune.Identifier
 			});
 
 			app.UseMiddleware<MiddlewareHelper>();
+			app.UseRouting();
 
 			if (IdentifierEnvironmentConstants.IdentifierConfigurations?.EnableMVC == true)
 			{

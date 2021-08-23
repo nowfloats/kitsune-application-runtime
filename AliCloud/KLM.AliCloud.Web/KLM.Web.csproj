@@ -13,9 +13,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Kitsune.Models" Version="1.0.6.1" />
-    <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="NewRelic.Agent" Version="8.13.798" />
+    <PackageReference Include="Kitsune.Models" Version="1.0.8" />
+    <PackageReference Include="NewRelic.Agent" Version="8.41.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
   <ItemGroup>
