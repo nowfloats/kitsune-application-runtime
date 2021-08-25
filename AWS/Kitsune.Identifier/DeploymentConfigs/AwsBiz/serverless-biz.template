@@ -8,7 +8,7 @@
       "Type" : "AWS::Serverless::Function",
       "Properties": {
         "Handler": "Kitsune.Identifier::Kitsune.Identifier.LambdaFunction::FunctionHandlerAsync",
-        "Runtime": "dotnetcore2.1",
+        "Runtime": "dotnetcore3.1",
         "CodeUri": "",
 		"Environment": {
 			"Variables" : {

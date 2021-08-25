@@ -1,4 +1,4 @@
-FROM microsoft/dotnet:2.1-aspnetcore-runtime
+FROM mcr.microsoft.com/dotnet/runtime:3.1
 WORKDIR /app
-COPY "bin/Release/PublishOutput" .
+COPY "bin/Release/netcoreapp3.1/publish" .
 ENTRYPOINT ["dotnet", "KLM.Web.dll"]

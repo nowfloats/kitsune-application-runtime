@@ -25,7 +25,7 @@ namespace Kitsune.Identifier
 						.AddEnvironmentVariables();
 				})
 				.UseStartup<Startup>()
-				.UseApiGateway();
+				.UseLambdaServer();
 		}
 
 		private void RegisterResponseContentEncoding()

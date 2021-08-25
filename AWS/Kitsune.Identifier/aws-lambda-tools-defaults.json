@@ -3,7 +3,7 @@
     "region" : "ap-south-1",
     "profile" : "Kitsune",
     "configuration" : "Release",
-    "framework"     : "netcoreapp2.1",
+    "framework"     : "netcoreapp3.1",
     "s3-bucket"     : "kitsune-sls-deploy",
     "template"      : "serverless.template",
     "stack-name"    : "kitsune-identifier",
