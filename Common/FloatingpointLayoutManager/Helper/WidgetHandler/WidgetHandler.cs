@@ -11,10 +11,8 @@ using Kitsune.Server.Model;
 using System.Reflection;
 using System.ComponentModel;
 using static Kitsune.Language.Models.KEntity;
-using static Kitsune.Language.Helper.Helper;
 using System.Text.RegularExpressions;
 using System.Web;
-using System.Web.SessionState;
 using Microsoft.CSharp.RuntimeBinder;
 using Newtonsoft.Json.Linq;
 
@@ -24,7 +22,7 @@ namespace KitsuneLayoutManager.Helper.WidgetHandler
     public class WidgetHandler
     {
 
-        
+
     }
 
     public static class Extensions

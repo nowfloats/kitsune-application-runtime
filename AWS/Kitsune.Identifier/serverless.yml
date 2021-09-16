@@ -1,0 +1,49 @@
+service: kitsune-identifier
+
+frameworkVersion: "2"
+
+plugins:
+    - serverless-offline
+
+custom:
+    serverless-offline:
+        offline: true
+        httpPort: 8080
+        corsAllowHeaders: "*"
+        corsAllowMethods: "*"
+        corsAllowOrigin: "*"
+        corsExposeHeaders: "*"
+        corsMaxAge: 86400
+
+provider:
+    name: aws
+    runtime: dotnetcore3.1
+    lambdaHashingVersion: 20201221
+    stage: dev
+    region: ap-south-1
+
+package:
+    individually: true
+
+functions:
+    kitsune-identifier:
+        handler: Kitsune.Identifier::Kitsune.Identifier.LambdaFunction::FunctionHandlerAsync
+        memorySize: 1536
+        timeout: 300
+        policies: 
+            - AWSLambdaFullAccess
+
+        # you can add packaging information here
+        package:
+            artifact: bin/Release/netcoreapp3.1/publish-dev-kitsune-identifier.zip
+        exclude:
+            - exclude-me.js
+            - exclude-me-dir/**
+        events:
+            - httpApi:
+                  path: /{proxy+}
+                  method: ANY
+        environment:
+            SLS_DEBUG: "*"
+
+

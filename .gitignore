@@ -19,3 +19,5 @@ AWS/cache-invalidation/obj/
 AliCloud/KLM.AliCloud.Web/obj/
 Common/FloatingpointLayoutManager/obj/
 AliCloud/KLM.AliCloud.Web/bin/
+/node_modules
+*.user

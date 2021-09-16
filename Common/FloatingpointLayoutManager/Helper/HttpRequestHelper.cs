@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,18 +14,7 @@ namespace KitsuneLayoutManager.Helper
         {
             try
             {
-                #region IP ADDRESS
-
-                var ip = Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
-
-                if (string.IsNullOrWhiteSpace(ip) || string.Equals(ip, "unknown", StringComparison.OrdinalIgnoreCase))
-                {
-                    ip = Request.ServerVariables["REMOTE_ADDR"];
-                }
-
-                #endregion
-
-                return ip;
+                return Request.HttpContext.Connection.RemoteIpAddress.ToString();
             }
             catch (Exception ex)
             {
@@ -41,35 +31,37 @@ namespace KitsuneLayoutManager.Helper
             {
 
                 //Checking if user agent contains the follwing strings.
-                if (request.ServerVariables["HTTP_USER_AGENT"] != null)
+                if (request.Headers["User-Agent"].FirstOrDefault() != null)
                 {
                     #region Checking for exception devices
 
-                    if (request.ServerVariables["HTTP_USER_AGENT"].ToLower().Contains("ipad"))
+                    if (request.Headers["User-Agent"].FirstOrDefault().ToLower().Contains("ipad"))
                         return false;
 
-                    if (request.ServerVariables["HTTP_USER_AGENT"].ToLower().Contains("android") && !request.ServerVariables["HTTP_USER_AGENT"].ToLower().Contains("mobile"))
+                    if (request.Headers["User-Agent"].FirstOrDefault().ToLower().Contains("android") && !request.Headers["User-Agent"].FirstOrDefault().ToLower().Contains("mobile"))
                         return false;
 
-                    if (request.ServerVariables["HTTP_USER_AGENT"].ToLower().Contains("tablet"))
+                    if (request.Headers["User-Agent"].FirstOrDefault().ToLower().Contains("tablet"))
                         return false;
 
                     #endregion
 
-                    if (request.Browser.IsMobileDevice)
-                    {
-                        return true;
-                    }
+                    //in .netcore we don't have such property
+                    //if (request.Browser.IsMobileDevice)
+                    //{
+                    //    return true;
+                    //}
 
-                    //Checking For WAP Profile Heaeder
-                    if (request.ServerVariables["HTTP_X_WAP_PROFILE"] != null)
-                    {
-                        return true;
-                    }
+                    //in .netcore we don't have such property
+                    ////Checking For WAP Profile Heaeder
+                    //if (request.Headers["HTTP_X_WAP_PROFILE"].FirstOrDefault() != null)
+                    //{
+                    //    return true;
+                    //}
 
                     //Checking for devices aceepting WAP
-                    if (request.ServerVariables["HTTP_ACCEPT"] != null &&
-                        request.ServerVariables["HTTP_ACCEPT"].ToLower().Contains("wap"))
+                    if (request.Headers["Accept"].FirstOrDefault() != null &&
+                        request.Headers["Accept"].FirstOrDefault().ToLower().Contains("wap"))
                     {
                         return true;
                     }
@@ -102,8 +94,7 @@ namespace KitsuneLayoutManager.Helper
                     //and check if the header contains that text
                     foreach (string s in mobiles)
                     {
-                        if (request.ServerVariables["HTTP_USER_AGENT"].
-                                                            ToLower().Contains(s.ToLower()))
+                        if (request.Headers["User-Agent"].FirstOrDefault().ToLower().Contains(s.ToLower()))
                         {
                             return true;
                         }

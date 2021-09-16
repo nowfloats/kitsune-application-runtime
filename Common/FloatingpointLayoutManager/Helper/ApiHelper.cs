@@ -16,7 +16,6 @@ using KitsuneLayoutManager.Models.Ria;
 using Kitsune.Models;
 using System.Diagnostics;
 using Kitsune.Language.Models;
-using System.Web.Script.Serialization;
 using System.Threading.Tasks;
 
 namespace KitsuneLayoutManager.Helper
@@ -24,15 +23,15 @@ namespace KitsuneLayoutManager.Helper
     public class ApiHelper
     {
         private static string KitsuneServerUrl = Constant.KitsuneApiDomain;
-     
+
         #region THIRD PARTY APIS
 
         internal static async Task<dynamic> GetResponseFromKScriptAsync(string endPoint, Dictionary<string, string> headers = null, bool isCacheEnabled = false, string rootAliasUri = null, Dictionary<string, long> functionLog = null, string websiteid = null)
-		{
+        {
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
-			try
-			{
+            try
+            {
                 string response = string.Empty;
                 if (isCacheEnabled)
                 {
@@ -116,25 +115,25 @@ namespace KitsuneLayoutManager.Helper
                 kresultDynamic.kresult = finalValue;
                 return kresultDynamic;
             }
-			catch (Exception ex)
-			{
+            catch (Exception ex)
+            {
 
-			}
+            }
             finally
             {
                 stopwatch.Stop();
                 Helper.UpdateFunctionLog(functionLog, string.Format(Constant.KSCRIPT_API_RESPONSE, endPoint), stopwatch.ElapsedMilliseconds);
             }
 
-			return null;
-		}
+            return null;
+        }
 
 
         #region KAppData 
         internal static dynamic GetComponentsData(List<Kitsune.Models.Project.ProjectComponent> components, string projectId, string websiteId, string requestUrl, string s3SettingsRootPath = null, string rootaliasurl = null, KitsuneRequestUrlType kitsuneRequestUrlType = KitsuneRequestUrlType.PRODUCTION)
         {
             dynamic kresultDynamic = JObject.Parse("{}");
-           
+
             //var demoProject = MongoConnector.MongoHelper.GetProjectDetailsAsync(projectId, kitsuneRequestUrlType).Result;
 
             var riaArgsModel = ParseRiaSettingsJSON(requestUrl, s3SettingsRootPath);
@@ -153,18 +152,18 @@ namespace KitsuneLayoutManager.Helper
                             }
                             catch (Exception ex)
                             {
-                               
+
                             }
                         }
                         break;
-                        //super_app : dummy data
+                    //super_app : dummy data
                     case "5ab5190ba35c3b04e9817cb7":
                         {
                             try
                             {
                                 kresultDynamic["_" + component.SchemaId] = (JToken)JsonConvert.DeserializeObject("{'name' : 'jio_user_name', 'email' : 'jio_user_email', 'mobile_number' : '8XXXXXXX789', 'profile_pic' : 'https://xyz.com/user/zyx/profile.jpg', 'is_wallet_active' : true, 'jio_id' : '1234567890' }");
                             }
-                            catch(Exception ex)
+                            catch (Exception ex)
                             {
 
                             }
@@ -196,119 +195,119 @@ namespace KitsuneLayoutManager.Helper
         #endregion
 
 
-		#region WEBACTION APIS
+        #region WEBACTION APIS
 
-		private static string WebActionEndPoint = "https://webactions.kitsune.tools/api/v1/{0}/get-data?{1}";
-		private static string WebActionListEndPoint = "https://webactions.kitsune.tools/api/v1/List";
-		//TODO : Store user and theme mapping in cache 
-		private static Dictionary<string, string> userMapping = new Dictionary<string, string>();
-		internal static async System.Threading.Tasks.Task<dynamic> GetWebActionsDataAsync(string authId, string widgetName, string fpId, string themeid, bool isCacheEnabled = false)
-		{
-			try
-			{
-				if (!String.IsNullOrEmpty(widgetName))
-				{
-					//if (isCacheEnabled)
-					//{
-					//    var response = CacheHelper.GetThirdPartyAPIResponseFromCache("WEBACTIONS-" + widgetName.ToUpper() + fpId.ToUpper(), isCacheEnabled);
-					//    if (!string.IsNullOrEmpty(response))
-					//    {
-					//        return JsonConvert.DeserializeObject<dynamic>(response);
-					//    }
-					//}
-					//if (!userMapping.ContainsKey(themeid))
-					//{
-					//    HttpClient listclient = new HttpClient();
-					//    listclient.DefaultRequestHeaders.Add("Authorization", userMapping[themeid]);
-					//    var listresult = listclient.GetAsync(WebActionListEndPoint).Result;                        
-					//    if (listresult.StatusCode == HttpStatusCode.OK)
-					//    {
-					//        var response = listresult.Content.ReadAsStringAsync().Result;
-					//        if (response != null)
-					//        {
-					//            var finalValue = JObject.Parse(response);
-					//            JToken value = null;
-					//            if (finalValue.TryGetValue("Token", out value))
-					//            {
-					//                userMapping.Add(themeid, value.ToString());
-					//            }
+        private static string WebActionEndPoint = "https://webactions.kitsune.tools/api/v1/{0}/get-data?{1}";
+        private static string WebActionListEndPoint = "https://webactions.kitsune.tools/api/v1/List";
+        //TODO : Store user and theme mapping in cache 
+        private static Dictionary<string, string> userMapping = new Dictionary<string, string>();
+        internal static async System.Threading.Tasks.Task<dynamic> GetWebActionsDataAsync(string authId, string widgetName, string fpId, string themeid, bool isCacheEnabled = false)
+        {
+            try
+            {
+                if (!String.IsNullOrEmpty(widgetName))
+                {
+                    //if (isCacheEnabled)
+                    //{
+                    //    var response = CacheHelper.GetThirdPartyAPIResponseFromCache("WEBACTIONS-" + widgetName.ToUpper() + fpId.ToUpper(), isCacheEnabled);
+                    //    if (!string.IsNullOrEmpty(response))
+                    //    {
+                    //        return JsonConvert.DeserializeObject<dynamic>(response);
+                    //    }
+                    //}
+                    //if (!userMapping.ContainsKey(themeid))
+                    //{
+                    //    HttpClient listclient = new HttpClient();
+                    //    listclient.DefaultRequestHeaders.Add("Authorization", userMapping[themeid]);
+                    //    var listresult = listclient.GetAsync(WebActionListEndPoint).Result;                        
+                    //    if (listresult.StatusCode == HttpStatusCode.OK)
+                    //    {
+                    //        var response = listresult.Content.ReadAsStringAsync().Result;
+                    //        if (response != null)
+                    //        {
+                    //            var finalValue = JObject.Parse(response);
+                    //            JToken value = null;
+                    //            if (finalValue.TryGetValue("Token", out value))
+                    //            {
+                    //                userMapping.Add(themeid, value.ToString());
+                    //            }
 
-					//        }
-					//    }
-					//    else
-					//        EventLogger.Write(System.Diagnostics.TraceLevel.Error, "GetWebActionsList api failure : " + listresult.Content.ReadAsStringAsync().Result);
-					//}
+                    //        }
+                    //    }
+                    //    else
+                    //        EventLogger.Write(System.Diagnostics.TraceLevel.Error, "GetWebActionsList api failure : " + listresult.Content.ReadAsStringAsync().Result);
+                    //}
 
-					//if (userMapping.ContainsKey(themeid))
-					if (!String.IsNullOrEmpty(authId))
-					{
-						HttpClient client = new HttpClient();
-						client.DefaultRequestHeaders.Add("Authorization", authId);
-						client.DefaultRequestHeaders.Add("ContentType", "application/json");
-						var url = string.Format(WebActionEndPoint, widgetName.ToLower(), "query={WebsiteId:'" + fpId + "'}");
-						var result = await client.GetAsync(url);
-						if (result.StatusCode == HttpStatusCode.OK)
-						{
-							var response = await result.Content.ReadAsStringAsync();
-							var finalValue = JsonConvert.DeserializeObject<dynamic>(response);
+                    //if (userMapping.ContainsKey(themeid))
+                    if (!String.IsNullOrEmpty(authId))
+                    {
+                        HttpClient client = new HttpClient();
+                        client.DefaultRequestHeaders.Add("Authorization", authId);
+                        client.DefaultRequestHeaders.Add("ContentType", "application/json");
+                        var url = string.Format(WebActionEndPoint, widgetName.ToLower(), "query={WebsiteId:'" + fpId + "'}");
+                        var result = await client.GetAsync(url);
+                        if (result.StatusCode == HttpStatusCode.OK)
+                        {
+                            var response = await result.Content.ReadAsStringAsync();
+                            var finalValue = JsonConvert.DeserializeObject<dynamic>(response);
 
-							//if (isCacheEnabled)
-							//{
-							//    CacheHelper.UpdateThirdPartyAPI("WEBACTIONS-" + widgetName.ToUpper() + fpId.ToUpper(), response);
-							//}
+                            //if (isCacheEnabled)
+                            //{
+                            //    CacheHelper.UpdateThirdPartyAPI("WEBACTIONS-" + widgetName.ToUpper() + fpId.ToUpper(), response);
+                            //}
 
-							return finalValue;
-						}
-					}
-				}
-			}
-			catch (Exception ex)
-			{
-				EventLogger.Write(ex, "KLM exception occured while GetWebActionsData: " + widgetName);
-			}
+                            return finalValue;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                EventLogger.Write(ex, "KLM exception occured while GetWebActionsData: " + widgetName);
+            }
 
-			return null;
-		}
+            return null;
+        }
 
-		#endregion
+        #endregion
 
-		#region LANGUAGE API's
+        #region LANGUAGE API's
 
-		private static string GetWebsiteDataEndPointFromOldAPI = "{0}/language/v1/{2}/get-data?website={1}";
-		private static string GetSchemaForWebsiteEndPointFromOldAPI = "{0}/language/v1/GetWebsiteSchema?websiteid={1}";
+        private static string GetWebsiteDataEndPointFromOldAPI = "{0}/language/v1/{2}/get-data?website={1}";
+        private static string GetSchemaForWebsiteEndPointFromOldAPI = "{0}/language/v1/GetWebsiteSchema?websiteid={1}";
         private static string GetBusinessDataWithMetaInfoAPI = "{0}/language/v1/{1}/get-file-data?projectId={2}&websiteId={3}&filePath={4}&currentPageNumber={5}";
         private static string GetMetaInfoAPI = "{0}/api/Project/v1/MetaInfo?projectId={1}&sourcePath={2}";
         private static string GetBusinessDataFromPropertyListAPI = "{0}/language/v1/{1}/get-data-by-property";
 
         internal static dynamic GetBusinessDataFromOldAPI(string websiteName, string schemaName)
-		{
-			try
-			{
-				var fpDataRequest = (HttpWebRequest)WebRequest.Create(new Uri(String.Format(GetWebsiteDataEndPointFromOldAPI, KitsuneServerUrl, websiteName.ToLower(), schemaName.ToLower())));
-				fpDataRequest.Method = "GET";
-				fpDataRequest.ContentType = "application/json";
-				fpDataRequest.Headers.Add(HttpRequestHeader.Authorization, "");
+        {
+            try
+            {
+                var fpDataRequest = (HttpWebRequest)WebRequest.Create(new Uri(String.Format(GetWebsiteDataEndPointFromOldAPI, KitsuneServerUrl, websiteName.ToLower(), schemaName.ToLower())));
+                fpDataRequest.Method = "GET";
+                fpDataRequest.ContentType = "application/json";
+                fpDataRequest.Headers.Add(HttpRequestHeader.Authorization, "");
 
 
-				var ws = fpDataRequest.GetResponse();
-				StreamReader sr = new StreamReader(ws.GetResponseStream());
-				var response = sr.ReadToEnd().ToString();
-				if (!String.IsNullOrEmpty(response))
-				{
+                var ws = fpDataRequest.GetResponse();
+                StreamReader sr = new StreamReader(ws.GetResponseStream());
+                var response = sr.ReadToEnd().ToString();
+                if (!String.IsNullOrEmpty(response))
+                {
                     //JavaScriptSerializer responseJsonData = new JavaScriptSerializer();
                     //var output = responseJsonData.Deserialize<dynamic>(response);
                     var output = JsonConvert.DeserializeObject<dynamic>(response);
                     return output["Data"][0];
-				}
-			}
-			catch (Exception ex)
-			{
-				EventLogger.Write(ex, "KLM exception occured while GetBusinessData: " + websiteName);
-			}
+                }
+            }
+            catch (Exception ex)
+            {
+                EventLogger.Write(ex, "KLM exception occured while GetBusinessData: " + websiteName);
+            }
 
-			return null;
-		}
-        
+            return null;
+        }
+
         internal static dynamic GetBusinessDataWithMetaInfo(string projectId, string websiteName, string schemaName, string filePath, string currentPageNumber, string developerId)
         {
             try
@@ -366,29 +365,29 @@ namespace KitsuneLayoutManager.Helper
         }
 
         internal static string GetSchemaForWebsiteFromOldAPI(string name)
-		{
-			try
-			{
-				var fpDataRequest = (HttpWebRequest)WebRequest.Create(new Uri(String.Format(GetSchemaForWebsiteEndPointFromOldAPI, KitsuneServerUrl, name)));
-				fpDataRequest.Method = "GET";
-				fpDataRequest.ContentType = "application/json";
+        {
+            try
+            {
+                var fpDataRequest = (HttpWebRequest)WebRequest.Create(new Uri(String.Format(GetSchemaForWebsiteEndPointFromOldAPI, KitsuneServerUrl, name)));
+                fpDataRequest.Method = "GET";
+                fpDataRequest.ContentType = "application/json";
 
 
-				var ws = fpDataRequest.GetResponse();
-				StreamReader sr = new StreamReader(ws.GetResponseStream());
-				var response = sr.ReadToEnd().ToString();
-				if (!String.IsNullOrEmpty(response))
-				{
-					return response;
-				}
-			}
-			catch (Exception ex)
-			{
-				EventLogger.Write(ex, "KLM exception occured while GetSchemaForWebsite: " + name);
-			}
+                var ws = fpDataRequest.GetResponse();
+                StreamReader sr = new StreamReader(ws.GetResponseStream());
+                var response = sr.ReadToEnd().ToString();
+                if (!String.IsNullOrEmpty(response))
+                {
+                    return response;
+                }
+            }
+            catch (Exception ex)
+            {
+                EventLogger.Write(ex, "KLM exception occured while GetSchemaForWebsite: " + name);
+            }
 
-			return null;
-		}
+            return null;
+        }
 
         internal static dynamic GetBusinessDataFromPropertyList(List<PropertyPathSegment> propertyList, string schemaId, string WebsiteId, string developerId)
         {
@@ -398,7 +397,7 @@ namespace KitsuneLayoutManager.Helper
                 DataApiRequestObject requestData = new DataApiRequestObject();
                 requestData.WebsiteId = WebsiteId;
                 requestData.PropertySegments = propertyList;
-                string jsonString = new JavaScriptSerializer().Serialize(requestData);
+                string jsonString = JsonConvert.SerializeObject(requestData);
                 byte[] array = Encoding.ASCII.GetBytes(jsonString);
 
                 var request = (HttpWebRequest)WebRequest.Create(uri);
@@ -410,7 +409,7 @@ namespace KitsuneLayoutManager.Helper
                 stream.Write(array, 0, array.Length);
                 stream.Close();
 
-                using (var response = (HttpWebResponse) request.GetResponse())
+                using (var response = (HttpWebResponse)request.GetResponse())
                 {
                     if (response == null)
                         throw new Exception($"schemaId:{schemaId} and propertyList:{jsonString}, API call failed");
@@ -420,8 +419,7 @@ namespace KitsuneLayoutManager.Helper
                     using (var reader = new StreamReader(response.GetResponseStream()))
                     {
                         string objText = reader.ReadToEnd();
-                        JavaScriptSerializer responseJsonData = new JavaScriptSerializer();
-                        return responseJsonData.Deserialize<dynamic>(objText);
+                        return JsonConvert.DeserializeObject<dynamic>(objText);
                     }
                 }
             }
@@ -431,24 +429,24 @@ namespace KitsuneLayoutManager.Helper
             }
         }
 
-		private static string GetWebsiteDataEndPointFromNewAPI = "{0}/language/v1/{2}/get-data?website={1}";
-		private static string GetSchemaForWebsiteEndPointFromNewAPI = "{0}/language/v1/GetWebsiteSchema?websiteid={1}";
+        private static string GetWebsiteDataEndPointFromNewAPI = "{0}/language/v1/{2}/get-data?website={1}";
+        private static string GetSchemaForWebsiteEndPointFromNewAPI = "{0}/language/v1/GetWebsiteSchema?websiteid={1}";
 
-		internal static dynamic GetBusinessDataFromNewAPI(string websiteName, string schemaName, string customerId, string developerId)
-		{
-			try
-			{
-				var fpDataRequest = (HttpWebRequest)WebRequest.Create(new Uri(String.Format(GetWebsiteDataEndPointFromNewAPI, KitsuneServerUrl, customerId, schemaName.ToLower())));
-				fpDataRequest.Method = "GET";
-				fpDataRequest.ContentType = "application/json";
-				fpDataRequest.Headers.Add(HttpRequestHeader.Authorization, developerId);
+        internal static dynamic GetBusinessDataFromNewAPI(string websiteName, string schemaName, string customerId, string developerId)
+        {
+            try
+            {
+                var fpDataRequest = (HttpWebRequest)WebRequest.Create(new Uri(String.Format(GetWebsiteDataEndPointFromNewAPI, KitsuneServerUrl, customerId, schemaName.ToLower())));
+                fpDataRequest.Method = "GET";
+                fpDataRequest.ContentType = "application/json";
+                fpDataRequest.Headers.Add(HttpRequestHeader.Authorization, developerId);
 
 
                 var ws = fpDataRequest.GetResponse();
                 StreamReader sr = new StreamReader(ws.GetResponseStream());
                 var response = sr.ReadToEnd().ToString();
                 if (!String.IsNullOrEmpty(response))
-                {                    
+                {
                     var output = JsonConvert.DeserializeObject<dynamic>(response);
                     return output["Data"][0];
                 }
@@ -458,100 +456,100 @@ namespace KitsuneLayoutManager.Helper
                 EventLogger.Write(ex, "KLM exception occured while GetBusinessData: " + websiteName);
             }
 
-			return null;
-		}
+            return null;
+        }
 
-		internal static string GetSchemaForWebsiteFromNewAPI(string name)
-		{
-			try
-			{
-				var fpDataRequest = (HttpWebRequest)WebRequest.Create(new Uri(String.Format(GetSchemaForWebsiteEndPointFromNewAPI, KitsuneServerUrl, name)));
-				fpDataRequest.Method = "GET";
-				fpDataRequest.ContentType = "application/json";
+        internal static string GetSchemaForWebsiteFromNewAPI(string name)
+        {
+            try
+            {
+                var fpDataRequest = (HttpWebRequest)WebRequest.Create(new Uri(String.Format(GetSchemaForWebsiteEndPointFromNewAPI, KitsuneServerUrl, name)));
+                fpDataRequest.Method = "GET";
+                fpDataRequest.ContentType = "application/json";
 
 
-				var ws = fpDataRequest.GetResponse();
-				StreamReader sr = new StreamReader(ws.GetResponseStream());
-				var response = sr.ReadToEnd().ToString();
-				if (!String.IsNullOrEmpty(response))
-				{
-					return response;
-				}
-			}
-			catch (Exception ex)
-			{
-				EventLogger.Write(ex, "KLM exception occured while GetSchemaForWebsite: " + name);
-			}
+                var ws = fpDataRequest.GetResponse();
+                StreamReader sr = new StreamReader(ws.GetResponseStream());
+                var response = sr.ReadToEnd().ToString();
+                if (!String.IsNullOrEmpty(response))
+                {
+                    return response;
+                }
+            }
+            catch (Exception ex)
+            {
+                EventLogger.Write(ex, "KLM exception occured while GetSchemaForWebsite: " + name);
+            }
 
-			return null;
-		}
+            return null;
+        }
 
-		#endregion
+        #endregion
 
-		#region K-Pay APIs
+        #region K-Pay APIs
 
-		internal static KPayCheckSumAPIResponse GetKPayEncodedCheckSum(string websiteId, List<string> amount)
-		{
-			if (String.IsNullOrEmpty(websiteId))
-				throw new ArgumentNullException(nameof(websiteId));
-			if (amount == null)
-				throw new ArgumentNullException(nameof(amount));
+        internal static KPayCheckSumAPIResponse GetKPayEncodedCheckSum(string websiteId, List<string> amount)
+        {
+            if (String.IsNullOrEmpty(websiteId))
+                throw new ArgumentNullException(nameof(websiteId));
+            if (amount == null)
+                throw new ArgumentNullException(nameof(amount));
 
-			try
-			{
-				string url = String.Format(Constant.KPayEncodedCheckSumApi, Constant.KitsunePaymentDomain);
-				Uri uri = new Uri(url);
+            try
+            {
+                string url = String.Format(Constant.KPayEncodedCheckSumApi, Constant.KitsunePaymentDomain);
+                Uri uri = new Uri(url);
 
-				var postData = new { pepper = websiteId, amounts = amount };
+                var postData = new { pepper = websiteId, amounts = amount };
                 //string jsonString = new JavaScriptSerializer().Serialize(postData);
                 string jsonString = JsonConvert.SerializeObject(postData);
                 byte[] array = Encoding.ASCII.GetBytes(jsonString);
 
-				var request = (HttpWebRequest)WebRequest.Create(uri);
-				request.Method = "POST";
-				request.ContentType = "application/json";
+                var request = (HttpWebRequest)WebRequest.Create(uri);
+                request.Method = "POST";
+                request.ContentType = "application/json";
 
-				Stream stream = request.GetRequestStream();
-				stream.Write(array, 0, array.Length);
-				stream.Close();
+                Stream stream = request.GetRequestStream();
+                stream.Write(array, 0, array.Length);
+                stream.Close();
 
-				using (var response = (HttpWebResponse)request.GetResponse())
-				{
-					if (response == null)
-						throw new Exception($"WebsiteId:{websiteId} and amount:{amount}, CheckSum API call failed");
-					if (response.StatusCode != HttpStatusCode.OK)
-						throw new Exception($"WebsiteId:{websiteId} and amount:{amount}, CheckSum API call response status : {response.StatusDescription}");
+                using (var response = (HttpWebResponse)request.GetResponse())
+                {
+                    if (response == null)
+                        throw new Exception($"WebsiteId:{websiteId} and amount:{amount}, CheckSum API call failed");
+                    if (response.StatusCode != HttpStatusCode.OK)
+                        throw new Exception($"WebsiteId:{websiteId} and amount:{amount}, CheckSum API call response status : {response.StatusDescription}");
 
-					using (var reader = new StreamReader(response.GetResponseStream()))
-					{
-						string objText = reader.ReadToEnd();
+                    using (var reader = new StreamReader(response.GetResponseStream()))
+                    {
+                        string objText = reader.ReadToEnd();
                         //JavaScriptSerializer responseJsonData = new JavaScriptSerializer();
                         //var output = responseJsonData.Deserialize<KPayCheckSumAPIResponse>(objText);
                         var output = JsonConvert.DeserializeObject<KPayCheckSumAPIResponse>(objText);
                         if (output != null)
-						{
-							if (output.checksums != null)
-							{
-								return output;
-							}
-							else
-							{
-								throw new Exception($"WebsiteId:{ websiteId } and amount:{ amount}, CheckSum value was empty in API response");
-							}
-						}
-						else
-						{
-							throw new Exception($"WebsiteId:{ websiteId } and amount:{ amount},API response data was null");
-						}
-					}
-				}
-			}
-			catch (Exception ex)
-			{
-				throw ex;
-			}
-		}
-        internal async static Task<KPayCheckSumAPIResponse>  GetKPayEncodedCheckSumAsync(string websiteId, List<string> amount)
+                        {
+                            if (output.checksums != null)
+                            {
+                                return output;
+                            }
+                            else
+                            {
+                                throw new Exception($"WebsiteId:{ websiteId } and amount:{ amount}, CheckSum value was empty in API response");
+                            }
+                        }
+                        else
+                        {
+                            throw new Exception($"WebsiteId:{ websiteId } and amount:{ amount},API response data was null");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        internal async static Task<KPayCheckSumAPIResponse> GetKPayEncodedCheckSumAsync(string websiteId, List<string> amount)
         {
             if (String.IsNullOrEmpty(websiteId))
                 throw new ArgumentNullException(nameof(websiteId));

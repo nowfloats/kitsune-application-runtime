@@ -1,173 +1,57 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F103B1BD-DC0A-4D41-87EA-E7D5C9085E4A}</ProjectGuid>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Version>1.0.0.0</Version>
+    <Authors>Devesh Kumar</Authors>
+    <Company>Kitsune</Company>
+    <Copyright>Copyright ©  2021</Copyright>
     <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>KitsuneLayoutManager</RootNamespace>
     <AssemblyName>KitsuneLayoutManager</AssemblyName>
-    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <LangVersion>default</LangVersion>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>bin\Debug\KitsuneLayoutManager.xml</DocumentationFile>
+    <RepositoryUrl>https://github.com/nowfloats/kitsune-application-runtime</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="netstandard, Version=2.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" />
-    <Reference Include="System" />
-    <Reference Include="System.ComponentModel" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Drawing.Design" />
-    <Reference Include="System.IO.Compression" />
-    <Reference Include="System.Management" />
-    <Reference Include="System.Numerics" />
-    <Reference Include="System.Runtime" />
-    <Reference Include="System.Runtime.Caching" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.ServiceModel" />
-    <Reference Include="System.Transactions" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Constants\KLMEnvironmentalConstants.cs" />
-    <Compile Include="Helper\AliasReference.cs" />
-    <Compile Include="Helper\ApiHelper.cs" />
-    <Compile Include="Helper\CacheHandler\GZipCompressor.cs" />
-    <Compile Include="Helper\CacheHandler\RedisCacheHandler.cs" />
-    <Compile Include="Helper\CacheHelper.cs" />
-    <Compile Include="Helper\ConsoleLogger.cs" />
-    <Compile Include="Helper\Constants.cs" />
-    <Compile Include="Helper\DataHelper.cs" />
-    <Compile Include="Helper\Entity\EntityHelper.cs" />
-    <Compile Include="Helper\EventLogger.cs" />
-    <Compile Include="Helper\BlockLevelExpressionEvaluator.cs" />
-    <Compile Include="Helper\ExpressionEvaluator.cs" />
-    <Compile Include="Helper\Helper.cs" />
-    <Compile Include="Helper\HttpRequestHelper.cs" />
-    <Compile Include="Helper\KinesisHelper.cs" />
-    <Compile Include="Helper\BlockLevelKLMExecutor.cs" />
-    <Compile Include="Helper\KLMExecutor.cs" />
-    <Compile Include="Helper\MongoConnector\MongoHelper-Identifier.cs" />
-    <Compile Include="Helper\MongoConnector\MongoHelper.cs" />
-    <Compile Include="Helper\PaginationHelper.cs" />
-    <Compile Include="Helper\Processor\ParallelProcessor.cs" />
-    <Compile Include="Helper\Project\ProjectHelper.cs" />
-    <Compile Include="Helper\RiaHelper.cs" />
-    <Compile Include="Helper\TagProcessors\KDLProcessor.cs" />
-    <Compile Include="Helper\TagProcessors\KObjectProcessor.cs" />
-    <Compile Include="Helper\TagProcessors\KPayAmountProcessor.cs" />
-    <Compile Include="Helper\TagProcessors\KRepeatProcessor.cs" />
-    <Compile Include="Helper\TagProcessors\KScriptProcessor.cs" />
-    <Compile Include="Helper\TagProcessors\KHideProcessor.cs" />
-    <Compile Include="Helper\TagProcessors\KShowProcessor.cs" />
-    <Compile Include="Helper\TagProcessors\NoOp.cs" />
-    <Compile Include="Helper\TagProcessors\TagProcessor.cs" />
-    <Compile Include="Helper\TagProcessors\ProcessorFactory.cs" />
-    <Compile Include="Helper\SqlConnector\KWebLogConnector.cs" />
-    <Compile Include="Helper\Theme Picker\ThemePicker.cs" />
-    <Compile Include="Helper\WidgetHandler\DataHandler.cs" />
-    <Compile Include="Helper\WidgetHandler\KPayHandler.cs" />
-    <Compile Include="Helper\WidgetHandler\KScriptHandler.cs" />
-    <Compile Include="Helper\WidgetHandler\RepeatHelper.cs" />
-    <Compile Include="Helper\WidgetHandler\TestWidgetHandler.cs" />
-    <Compile Include="Helper\WidgetHandler\WidgetHandler.cs" />
-    <Compile Include="Models\ExternalModels.cs" />
-    <Compile Include="Models\KitsunePropertyDataModel.cs" />
-    <Compile Include="Models\Configurations.cs" />
-    <Compile Include="Models\KitsuneResourceDetails.cs" />
-    <Compile Include="Models\KLM-Constants.cs" />
-    <Compile Include="Models\KPayModels.cs" />
-    <Compile Include="Models\PaginationModel.cs" />
-    <Compile Include="Models\RequestDetails.cs" />
-    <Compile Include="Models\Ria\RiaModels.cs" />
-    <Compile Include="Models\Ria\RiaSchemaModels.cs" />
-    <Compile Include="Models\ThemePerformanceModel.cs" />
-    <Compile Include="Models\WebCacheFileModel.cs" />
-    <Compile Include="Models\WebsiteDetails.cs" />
-    <Compile Include="RequestHandler.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Scripts\jquery-2.1.1.intellisense.js" />
-  </ItemGroup>
-  <ItemGroup>
-    <Analyzer Include="..\..\packages\AWSSDK.Kinesis.3.3.6.1\analyzers\dotnet\cs\AWSSDK.Kinesis.CodeAnalysis.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Antlr4.Runtime" Version="4.6.6" />
-    <PackageReference Include="ApacheThrift" Version="0.14.2" />
-    <PackageReference Include="AWSSDK.Core" Version="3.7.2.5" />
+    <PackageReference Include="AWSSDK.Core" Version="3.7.3.1" />
     <PackageReference Include="AWSSDK.Kinesis" Version="3.7.0.53" />
-    <PackageReference Include="DnsClient" Version="1.5.0" />
     <PackageReference Include="HtmlAgilityPack" Version="1.11.36" />
     <PackageReference Include="Kitsune.Helper" Version="1.0.3" />
-    <PackageReference Include="Kitsune.Language" Version="1.0.1" />
     <PackageReference Include="Kitsune.Models" Version="1.0.8" />
-    <PackageReference Include="Kitsune.Server.Model" Version="1.0.1" />
     <PackageReference Include="KitsuneAntlrLibrary" Version="1.0.3" />
     <PackageReference Include="KitsuneSyntaxParser" Version="1.0.4" />
     <PackageReference Include="MessagePack" Version="2.3.75" />
-    <PackageReference Include="MongoDB.Bson" Version="2.13.1" />
-    <PackageReference Include="MongoDB.Driver" Version="2.13.1" />
-    <PackageReference Include="MongoDB.Driver.Core" Version="2.13.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+    <PackageReference Include="Microsoft.Extensions.Logging.EventLog" Version="3.1.19" />
     <PackageReference Include="murmurhash" Version="1.0.3" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="protobuf-net" Version="3.0.101" />
-    <PackageReference Include="StackExchange.Redis" Version="2.2.62" />
-    <PackageReference Include="System.Buffers" Version="4.5.1" />
-    <PackageReference Include="System.Runtime.InteropServices.RuntimeInformation" Version="4.3.0" />
-    <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
-    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
+    <PackageReference Include="StackExchange.Redis" Version="2.2.50" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Kitsune.Server.Model">
+      <HintPath>Kitsune.Server.Model.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
