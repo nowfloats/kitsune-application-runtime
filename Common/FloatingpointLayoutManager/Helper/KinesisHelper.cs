@@ -155,7 +155,7 @@ public class KinesisHelper
                         requestRecord.Data = memoryStream;
 
                         //PutRecordResponse responseRecord = kinesisClient.PutRecordAsync(requestRecord);
-                        kinesisClient.PutRecordAsync(requestRecord);
+                        kinesisClient.PutRecordAsync(requestRecord).Wait();
                         //sequenceNumber = responseRecord.SequenceNumber;
                     }
                     catch (Exception ex)

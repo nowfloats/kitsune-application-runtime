@@ -21,3 +21,4 @@ Common/FloatingpointLayoutManager/obj/
 AliCloud/KLM.AliCloud.Web/bin/
 /node_modules
 *.user
+/AWS/Kitsune.Identifier/.serverless
