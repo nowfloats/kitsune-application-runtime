@@ -41,7 +41,7 @@ namespace KitsuneLayoutManager.Helper.TagProcessors
                     baseObj = null;
                     try
                     {
-                        objects = Kitsune.SyntaxParser.Parser.GetObjects(Helper.TrimDelimiters(attr.Value));
+                        objects = KitsuneSyntaxParser.Parser.GetObjects(Helper.TrimDelimiters(attr.Value));
 
                         foreach (var obj in objects)
                         {

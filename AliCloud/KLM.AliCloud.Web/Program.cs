@@ -24,7 +24,7 @@ namespace KLM.Web
                .UseSetting("System.GC.Server", "true")
                .ConfigureAppConfiguration((builderContext, config) =>
                 {
-                    IHostingEnvironment env = builderContext.HostingEnvironment;
+                    IWebHostEnvironment env = builderContext.HostingEnvironment;
 
                     config.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
                     //.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true);

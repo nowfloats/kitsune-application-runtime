@@ -5,6 +5,7 @@ using KitsuneLayoutManager.Helper;
 using System;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 
 public class KinesisHelper
 {
@@ -64,8 +65,7 @@ public class KinesisHelper
                         requestRecord.StreamName = FPWebLogStreamName;
                         requestRecord.PartitionKey = "FPWebLog-Stream";
                         requestRecord.Data = memoryStream;
-
-                        PutRecordResponse responseRecord = kinesisClient.PutRecord(requestRecord);
+                        PutRecordResponse responseRecord = Task.Run(() => kinesisClient.PutRecordAsync(requestRecord)).Result;
                         sequenceNumber = responseRecord.SequenceNumber;
                     }
                     catch (Exception ex)
@@ -113,7 +113,7 @@ public class KinesisHelper
                         requestRecord.PartitionKey = "FPRefererLog-Stream";
                         requestRecord.Data = memoryStream;
 
-                        PutRecordResponse responseRecord = kinesisClient.PutRecord(requestRecord);
+                        PutRecordResponse responseRecord = Task.Run(() => kinesisClient.PutRecordAsync(requestRecord)).Result;
                         sequenceNumber = responseRecord.SequenceNumber;
                     }
                     catch (Exception ex)
@@ -155,7 +155,7 @@ public class KinesisHelper
                         requestRecord.Data = memoryStream;
 
                         //PutRecordResponse responseRecord = kinesisClient.PutRecordAsync(requestRecord);
-                        kinesisClient.PutRecord(requestRecord);
+                        kinesisClient.PutRecordAsync(requestRecord).Wait();
                         //sequenceNumber = responseRecord.SequenceNumber;
                     }
                     catch (Exception ex)

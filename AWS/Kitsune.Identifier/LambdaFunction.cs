@@ -9,7 +9,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace Kitsune.Identifier
 {
-	public class LambdaFunction : APIGatewayProxyFunction
+	public class LambdaFunction : APIGatewayHttpApiV2ProxyFunction
 	{
 		protected override void Init(IWebHostBuilder builder)
 		{
@@ -25,7 +25,7 @@ namespace Kitsune.Identifier
 						.AddEnvironmentVariables();
 				})
 				.UseStartup<Startup>()
-				.UseApiGateway();
+				.UseLambdaServer();
 		}
 
 		private void RegisterResponseContentEncoding()

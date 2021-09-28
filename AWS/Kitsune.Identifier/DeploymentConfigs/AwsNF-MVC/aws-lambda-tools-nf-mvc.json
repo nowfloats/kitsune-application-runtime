@@ -2,7 +2,7 @@
 	"region": "ap-south-1",
 	"profile": "default",
 	"configuration": "Release",
-	"framework": "netcoreapp2.1",
+	"framework": "netcoreapp3.1",
 	"s3-bucket": "kitsune-identifier-lambda-deployment",
 	"template": "deploymentconfigs/awsnf-mvc/serverless-nf-mvc.template",
 	"stack-name": "kitsune-identifier-mvc"

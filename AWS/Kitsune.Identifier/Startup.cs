@@ -17,7 +17,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Primitives;
 using Microsoft.Net.Http.Headers;
-
+using Microsoft.Extensions.Hosting;
 namespace Kitsune.Identifier
 {
 	public class Startup
@@ -74,11 +74,11 @@ namespace Kitsune.Identifier
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-		public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 		{
 			if (env.IsDevelopment())
 			{
-				app.UseBrowserLink();
+				// app.UseBrowserLink();
 				app.UseDeveloperExceptionPage();
 			}
 			else
@@ -121,14 +121,15 @@ namespace Kitsune.Identifier
 			});
 
 			app.UseMiddleware<MiddlewareHelper>();
+			app.UseRouting();
 
 			if (IdentifierEnvironmentConstants.IdentifierConfigurations?.EnableMVC == true)
 			{
-				app.UseMvc(routes =>
+				app.UseEndpoints(routes =>
 				{
-					routes.MapRoute(
-						name: "default",
-						template: "{controller=Home}/{action=Index}/{id?}");
+					routes.MapControllerRoute(
+						"default",
+						"{controller=Home}/{action=Index}/{id?}");
 				});
 			}
 		}
