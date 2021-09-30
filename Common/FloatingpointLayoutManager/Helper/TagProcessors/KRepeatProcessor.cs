@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using KitsuneAntlrLibrary;
-using KitsuneAntlrLibrary.Model;
+using Kitsune.AntlrLibrary;
+using Kitsune.AntlrLibrary.Model;
 using HtmlAgilityPack;
 using Kitsune.Language.Models;
 using Newtonsoft.Json;

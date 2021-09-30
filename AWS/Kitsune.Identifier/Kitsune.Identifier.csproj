@@ -17,7 +17,7 @@
 		<PackageReference Include="AWSSDK.Lambda" Version="3.7.3.2" />
 		<PackageReference Include="AWSSDK.S3" Version="3.7.1.25" />
 		<PackageReference Include="HtmlAgilityPack" Version="1.11.36" />
-		<PackageReference Include="Kitsune.Models" Version="1.0.8" />
+		<PackageReference Include="Kitsune.Models" Version="3.0.2" />
 		<PackageReference Include="MessagePack" Version="2.3.75" />
 <!--		<PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.0" />-->
 		<PackageReference Include="Microsoft.AspNetCore.ResponseCompression" Version="2.2.0" />

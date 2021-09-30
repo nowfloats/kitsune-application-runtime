@@ -1,9 +1,9 @@
-﻿using KitsuneAntlrLibrary;
-using KitsuneAntlrLibrary.Model;
+﻿using Kitsune.AntlrLibrary;
+using Kitsune.AntlrLibrary.Model;
 using Kitsune.Language.Models;
 using Kitsune.Server.Model.Kitsune;
-using KitsuneSyntaxParser;
-using KitsuneSyntaxParser.Models;
+using Kitsune.SyntaxParser;
+using Kitsune.SyntaxParser.Models;
 using KitsuneLayoutManager.Models;
 using Microsoft.CSharp.RuntimeBinder;
 using Newtonsoft.Json;
