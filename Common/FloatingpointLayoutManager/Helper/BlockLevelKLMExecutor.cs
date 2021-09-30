@@ -1,5 +1,5 @@
-﻿using KitsuneAntlrLibrary;
-using KitsuneAntlrLibrary.Model;
+﻿using Kitsune.AntlrLibrary;
+using Kitsune.AntlrLibrary.Model;
 using Kitsune.Language.Models;
 using Kitsune.Models;
 using Kitsune.Models.KLM;

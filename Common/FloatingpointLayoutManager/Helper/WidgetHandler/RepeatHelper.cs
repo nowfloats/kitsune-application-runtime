@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using HtmlAgilityPack;
 using Kitsune.Server.Model.Kitsune;
 using System.Text.RegularExpressions;
-using KitsuneSyntaxParser;
+using Kitsune.SyntaxParser;
 
 namespace KitsuneLayoutManager.Helper.WidgetHandler
 {

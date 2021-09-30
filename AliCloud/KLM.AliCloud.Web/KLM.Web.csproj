@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Kitsune.Models" Version="1.0.8" />
+    <PackageReference Include="Kitsune.Models" Version="3.0.2" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.11.1" />
     <PackageReference Include="NewRelic.Agent" Version="8.41.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />

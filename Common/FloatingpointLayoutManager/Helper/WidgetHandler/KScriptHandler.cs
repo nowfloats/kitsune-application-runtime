@@ -1,6 +1,6 @@
 ﻿using HtmlAgilityPack;
 using Kitsune.Helper;
-using KitsuneSyntaxParser;
+using Kitsune.SyntaxParser;
 using KitsuneLayoutManager.Models;
 using Microsoft.CSharp.RuntimeBinder;
 using System;

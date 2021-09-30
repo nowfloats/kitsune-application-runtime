@@ -17,7 +17,7 @@ using KitsuneLayoutManager.Models;
 using Newtonsoft.Json;
 using System.Collections;
 using System.Diagnostics;
-using KitsuneSyntaxParser;
+using Kitsune.SyntaxParser;
 using System.Dynamic;
 
 namespace KitsuneLayoutManager.Helper.WidgetHandler
